@@ -3,12 +3,13 @@ import { HttpService } from '@nestjs/axios';
 import { ChapaConfigService } from '../chapa-config/chapa-config.service';
 import { lastValueFrom } from 'rxjs';
 import { ChapaUtilsService } from 'src/chapa-utils/chapa-utils.service';
-// Main service to initialize/verify payments.
+
+// Main service to initialize & verify payments.
 
 @Injectable()
 export class ChapaService {
   constructor(
-    private readonly httpService: HttpService, // ✅ should be imported from '@nestjs/axios'
+    private readonly httpService: HttpService,
     private readonly chapaConfigService: ChapaConfigService,
     private readonly chapaUtilsService: ChapaUtilsService,
   ) {}
@@ -16,6 +17,7 @@ export class ChapaService {
   async initializePayment(paymentData: any): Promise<any> {
     const secret = this.chapaConfigService.secretKey;
     const txRef = this.chapaUtilsService.generateTxRef();
+
     paymentData.tx_ref = txRef;
     console.log(paymentData.tx_ref);
 
@@ -31,7 +33,6 @@ export class ChapaService {
       ),
     );
 
-    // console.log('...............', response.data);
     return response.data;
   }
 

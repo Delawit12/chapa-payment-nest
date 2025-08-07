@@ -20,14 +20,4 @@ export class ChapaConfigService {
     }
     return secretKey;
   }
-
-  get environment(): string {
-    return this.configService.get<string>('CHAPA_ENVIRONMENT', 'sandbox');
-  }
-
-  get baseUrl(): string {
-    return this.environment === 'production'
-      ? 'https://api.chapa.co'
-      : 'https://sandbox.chapa.co';
-  }
 }

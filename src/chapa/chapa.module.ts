@@ -9,8 +9,8 @@ import { ChapaUtilsService } from 'src/chapa-utils/chapa-utils.service';
 
 @Module({
   imports: [
-    HttpModule, // ✅ This makes HttpService available
-    ConfigModule.forRoot(), // ✅ Loads .env
+    HttpModule,
+    ConfigModule.forRoot(), //Loads .env
   ],
   providers: [ChapaService, ChapaConfigService, ChapaUtilsService],
   exports: [ChapaService],
